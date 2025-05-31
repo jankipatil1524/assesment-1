@@ -1,0 +1,462 @@
+Module:Introduction To Data Science
+
+ DA - Analyzing Data with Python 
+
+NUMPY
+Q.1 Convert a 1D array to a 2D array with 2 rows 
+
+import numpy as np
+
+# 1D array
+array_1d = np.array([1, 2, 3, 4, 5, 6])
+
+# Convert to 2D array with 2 rows
+array_2d = array_1d.reshape(2, -1)  # -1 means "infer the number of columns"
+
+print(array_2d)
+
+output:
+
+[[1 2 3]
+ [4 5 6]]
+
+
+
+Q.2
+
+Get the common items between a and b
+Input:
+a = np.array([1,2,3,2,3,4,3,4,5,6])
+b = np.array([7,2,10,2,7,4,9,4,9,8])
+
+import numpy as np
+
+a = np.array([1, 2, 3, 2, 3, 4, 3, 4, 5, 6])
+b = np.array([7, 2, 10, 2, 7, 4, 9, 4, 9, 8])
+
+common_items = np.intersect1d(a, b)
+print(common_items)
+
+output:
+[2 4]
+
+3 Get all items between 5 and 10 from a.
+Input:
+a = np.array([2, 6, 1, 9, 10, 3, 27])
+
+
+import numpy as np
+
+a = np.array([2, 6, 1, 9, 10, 3, 27])
+result = a[(a >= 5) & (a <= 10)]
+
+print(result)
+
+Output:
+
+[ 6  9 10]
+
+
+Q.4 Limit the number of items printed in python NumPy array a to a maximum of 6
+elements.
+Input:
+array([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]) 
+
+
+import numpy as np
+
+a = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+np.set_printoptions(threshold=6)  # Limit output
+print(a)
+
+Output:
+
+[ 0  1  2 ... 12 13 14]
+
+PANDAS
+
+1. Compute the minimum, 25th percentile, median, 75th, and maximum of ser. 
+
+import pandas as pd
+
+# Example Series (replace this with your actual series)
+ser = pd.Series([12, 7, 3, 15, 8, 10, 20, 5])
+
+# Compute statistics
+minimum = ser.min()
+q1 = ser.quantile(0.25)
+median = ser.median()
+q3 = ser.quantile(0.75)
+maximum = ser.max()
+
+# Display results
+print("Minimum:", minimum)
+print("25th Percentile (Q1):", q1)
+print("Median (Q2):", median)
+print("75th Percentile (Q3):", q3)
+print("Maximum:", maximum)
+
+
+2. Creating A Pandas Data Frame and Using Sample Data Sets 
+
+Step 1: Importing Pandas
+
+import pandas as pd
+
+stepm2:Step 2: Creating a Pandas DataFrame (Manually)
+
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'Los Angeles', 'Chicago']
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+
+output:
+
+     Name  Age         City
+0   Alice   25     New York
+1     Bob   30  Los Angeles
+2  Charlie   35      Chicago
+
+
+ Step 3: Using Sample Datasets
+
+pip install seaborn
+
+import seaborn as sns
+
+# Load sample dataset
+df = sns.load_dataset('tips')  # Dataset about restaurant tips
+
+print(df.head())  # Display first 5 rows
+
+Step 4: Random Sampling from a DataFrame
+
+sample_df = df.sample(n=5)  # Get 5 random rows
+print(sample_df)
+
+3. Using NumPy, create a Pandas Data Frame with five rows and three columns. 
+
+import numpy as np
+import pandas as pd
+
+# Create a 5x3 NumPy array with random numbers
+data = np.random.rand(5, 3)
+
+# Create a DataFrame from the NumPy array
+df = pd.DataFrame(data, columns=['Column1', 'Column2', 'Column3'])
+
+# Display the DataFrame
+print(df)
+
+output:
+
+   Column1   Column2   Column3
+0  0.78119  0.29321   0.56183
+1  0.21947  0.98042   0.01456
+2  0.75982  0.45312   0.67213
+3  0.93256  0.82134   0.30172
+4  0.03428  0.11234   0.78923
+
+4. For a Pandas Data Frame created from a NumPy array, what is the default behavior for
+the labels for the columns? For the rows? 
+
+
+When a Pandas DataFrame is created from a NumPy array, and no labels (index or column names) are explicitly specified, Pandas assigns default labels as follows:
+
+Column Labels: Default to integers starting from 0 to n-1, where n is the number of columns.
+
+Row Labels (Index): Default to integers starting from 0 to m-1, where m is the number of rows.
+
+Example:
+
+import numpy as np
+import pandas as pd
+
+data = np.array([[1, 2], [3, 4]])
+df = pd.DataFrame(data)
+
+print(df)
+
+Output:
+
+   0  1
+0  1  2
+1  3  4
+
+
+6. Write the code to show the number of rows and columns in data frame. 
+
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'Los Angeles', 'Chicago']
+}
+
+df = pd.DataFrame(data)
+
+# Get number of rows and columns
+rows, columns = df.shape
+
+print(f"Number of rows: {rows}")
+print(f"Number of columns: {columns}")
+
+
+7. How might you show the first few rows of data frame?
+
+import pandas as pd
+
+# Create a sample DataFrame
+data = {'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+        'Age': [25, 30, 35, 40, 45]}
+df = pd.DataFrame(data)
+
+# Show the first 5 rows (default)
+print(df.head())
+
+# Show the first 3 rows
+print(df.head(3))
+
+ 8. If you select a single column from the diamonds Data Frame, what will be the type of the
+return value?
+
+
+Selecting a single column in pandas with df['column_name'] or df.column_name returns a Series object.
+
+Selecting multiple columns returns a DataFrame.
+import seaborn as sns
+diamonds = sns.load_dataset('diamonds')
+
+single_column = diamonds['carat']
+print(type(single_column))
+
+9. Create a line plot using the x and y values provided below. Label the y-axis as “Y” and
+label the x-axis as “X”.
+x = [3, 4, 5, 6]
+y = [1.5, 2, 2.5, 3]
+
+
+import matplotlib.pyplot as plt
+
+x = [3, 4, 5, 6]
+y = [1.5, 2, 2.5, 3]
+
+plt.plot(x, y)          # Plot line
+plt.xlabel('X')         # Label x-axis
+plt.ylabel('Y')         # Label y-axis
+plt.title('Line Plot')  # Optional title
+plt.show()
+
+
+10. Create an array of numbers between 0 and 6 with increments of 0.3 and name its “x”.
+Then on the same plot, plot x, x², x³, and x⁴. For consistency, use the following style lines
+respectively, “ro”, “bs”, “g”, and “:”. Lastly, make sure that the x-axis covers 0 to 6, while
+the y-axis spans from 0 to 125. Do not worry if you are not familiar with the style lines —
+you will recognize them as soon as you see the plot. 
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create array x from 0 to 6 with step 0.3
+x = np.arange(0, 6.1, 0.3)  # 6.1 to include 6
+
+# Plot x, x², x³, and x⁴ with given styles
+plt.plot(x, x, 'ro', label='x')
+plt.plot(x, x**2, 'bs', label='x^2')
+plt.plot(x, x**3, 'g', label='x^3')
+plt.plot(x, x**4, ':', label='x^4')
+
+# Set x-axis and y-axis limits
+plt.xlim(0, 6)
+plt.ylim(0, 125)
+
+# Add legend and labels for clarity
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Plot
+
+ 11. Heights and initials of a group of individuals are provided below. Create a bar plot titled
+“Height Comparison” to compare the heights among this group.
+height = [179, 155, 191, 152, 188, 177]
+names = ['QA', 'WB', 'EC', 'RD', 'TE', 'YF']
+
+import matplotlib.pyplot as plt
+
+height = [179, 155, 191, 152, 188, 177]
+names = ['QA', 'WB', 'EC', 'RD', 'TE', 'YF']
+
+plt.bar(names, height, color='skyblue')
+plt.title('Height Comparison')
+plt.xlabel('Individuals')
+plt.ylabel('Height (cm)')
+plt.ylim(140, 200)  # Optional: set y-axis limits for better visualization
+plt.show()
+
+
+12. Plot a histogram of x, where x consists of 100,000 randomly-selected points with a normal
+distribution (hint: you can use numpy.random.randn() to generate the random points). The
+histogram should have 10 bins. Look at how the histogram changes when we try 20 and 50
+bins. 
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate 100,000 random points with normal distribution
+x = np.random.randn(100000)
+
+# Plot histogram with different number of bins
+plt.figure(figsize=(15, 5))
+
+# 10 bins
+plt.subplot(1, 3, 1)
+plt.hist(x, bins=10, color='skyblue', edgecolor='black')
+plt.title('Histogram with 10 bins')
+
+# 20 bins
+plt.subplot(1, 3, 2)
+plt.hist(x, bins=20, color='lightgreen', edgecolor='black')
+plt.title('Histogram with 20 bins')
+
+# 50 bins
+plt.subplot(1, 3, 3)
+plt.hist(x, bins=50, color='salmon', edgecolor='black')
+plt.title('Histogram with 50 bins')
+
+plt.tight_layout()
+plt.show()
+
+
+13. What are the features of TensorFlow? 
+
+
+1.Open Source
+TensorFlow is an open-source library, which means it’s free to use and has a large community contributing to its development and improvement.
+
+2.Flexible Architecture
+It can run on multiple platforms including CPUs, GPUs, TPUs, desktops, servers, and mobile devices.
+
+3.Automatic Differentiation
+TensorFlow provides automatic computation of gradients which is essential for training machine learning models.
+
+4.Highly Scalable
+It supports distributed computing, allowing models to be trained across multiple machines and GPUs.
+
+5.Extensive Library of Pre-built Functions
+TensorFlow offers many built-in operations and layers to simplify model building.
+
+6.Support for Multiple Languages
+While Python is the primary language, TensorFlow also supports JavaScript, C++, Java, and Swift.
+
+7.TensorBoard
+A powerful visualization tool that helps monitor and debug machine learning workflows by providing graphs, metrics, and other insights.
+
+8.Ecosystem Integration
+Works well with other libraries like Keras (for high-level neural networks API), TensorFlow Lite (for mobile and embedded devices), TensorFlow Extended (for production pipelines), and TensorFlow Hub (pre-trained models).
+
+9.Robust Community and Documentation
+Comprehensive tutorials, guides, and a large community help ease development and troubleshooting.
+
+10.Deployment Ready
+Models can be easily deployed to cloud platforms, mobile, IoT devices, and web browsers.
+
+
+
+14. List a few limitations of TensorFlow.
+
+
+1.Steep Learning Curve:
+TensorFlow can be complex for beginners, especially due to its syntax and abstraction levels, making it harder to get started compared to higher-level APIs like Keras.
+
+2.Verbose Syntax:
+Writing models in raw TensorFlow (especially pre-TensorFlow 2.x) requires a lot of boilerplate code, making the development process less intuitive.
+
+3.Performance Issues with Small Models:
+TensorFlow may have overhead that affects performance for small or simple models, where other libraries (like scikit-learn or PyTorch) might perform better.
+
+4.Mobile and Embedded Limitations:
+Although TensorFlow Lite exists, deploying models on mobile or embedded systems can be challenging and may require significant optimization.
+
+5.Static Graphs in Older Versions:
+TensorFlow 1.x used static computation graphs, making debugging and dynamic model building more difficult. This was improved in TensorFlow 2.x with eager execution.
+
+6.Resource Intensive:
+Running and training TensorFlow models can be resource-intensive, often requiring powerful hardware like GPUs for efficient processing.
+
+7.Community Support for Certain Features:
+While TensorFlow has a large community, some specific features or use cases may have limited support or outdated documentation compared to PyTorch.
+
+15. What do you know about supervised and unsupervised machine learning?
+
+
+1. Supervised Learning
+Definition:
+Supervised learning is a type of machine learning where the model is trained on a labeled dataset — meaning that each training example has an input and a corresponding correct output (label).
+
+Goal:
+To learn a mapping from inputs to outputs so the model can predict the label of new, unseen data.
+
+Examples:
+
+Classification: Predicting categories
+
+E.g., Email spam detection (spam or not spam)
+
+Regression: Predicting continuous values
+
+E.g., Predicting house prices
+
+Popular Algorithms:
+
+Linear Regression
+
+Logistic Regression
+
+Decision Trees
+
+Support Vector Machines (SVM)
+
+Neural Networks
+
+2. Unsupervised Learning
+Definition:
+Unsupervised learning is a type of machine learning where the model is trained on data that does not have labeled outputs.
+
+Goal:
+To identify patterns or structure in the data, such as grouping or reducing dimensionality.
+
+Examples:
+
+Clustering: Grouping similar data points
+
+E.g., Customer segmentation
+
+Dimensionality Reduction: Reducing the number of variables
+
+E.g., Principal Component Analysis (PCA)
+
+Popular Algorithms:
+
+K-Means Clustering
+
+Hierarchical Clustering
+
+DBSCAN
+
+PCA (Principal Component Analysis)
+
+Autoencoders (in deep learning)
+
+
+
+
+
+
+
